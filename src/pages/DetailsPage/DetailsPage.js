@@ -20,7 +20,7 @@ function DetailsPage() {
   }
   const fetchData = async() => {
     try {
-      let responseData=await axios.get(`http://localhost:5000/properites/detail?id=${id}`)
+      let responseData=await axios.get(`${process.env.REACT_APP_URL}/properites/detail?id=${id}`)
       setdata(responseData.data);
       setIsLoaded(true);
       fetchCity(responseData.data.location[1].externalID)
@@ -31,7 +31,7 @@ function DetailsPage() {
   const fetchCity = async (location) => {
     try {
       const theCity = await axios.get(
-        `http://localhost:5000?locationExternalIDs=${location}`
+        `${process.env.REACT_APP_URL}?locationExternalIDs=${location}`
       );
       setSameCity(theCity.data.hits);
       setCityIsLoaded(true);
